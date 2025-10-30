@@ -1,0 +1,9 @@
+.:53 {
+  log
+  errors
+  hosts {
+    20.20.20.20 service.test
+    20.20.20.21 api.service.otherdomain.io
+    ttl 300
+  }
+}

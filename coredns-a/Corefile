@@ -1,0 +1,9 @@
+.:53 {
+  log
+  errors
+  hosts {
+    10.10.10.10 myapp.test
+    10.10.10.11 myapp.domain.example.com
+    ttl 300
+  }
+}

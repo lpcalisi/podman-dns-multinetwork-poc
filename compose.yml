@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  coredns_a:
+    image: coredns/coredns:1.11.1
+    command: ["-conf", "/etc/coredns/Corefile"]
+    volumes:
+      - ./coredns-a/Corefile:/etc/coredns/Corefile:ro
+    networks:
+      netA:
+        ipv4_address: 10.93.0.53
+    restart: unless-stopped
+
+  coredns_b:
+    image: coredns/coredns:1.11.1
+    command: ["-conf", "/etc/coredns/Corefile"]
+    volumes:
+      - ./coredns-b/Corefile:/etc/coredns/Corefile:ro
+    networks:
+      netB:
+        ipv4_address: 10.89.0.53
+    restart: unless-stopped
+
+  tester:
+    image: alpine:3.20
+    command: ["sleep", "infinity"]
+    networks:
+      - netA
+      - netB
+
+networks:
+  netA:
+    external: true
+  netB:
+    external: true
